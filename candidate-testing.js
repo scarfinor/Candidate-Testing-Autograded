@@ -21,18 +21,20 @@ let candidateAnswers;
 
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
-let candidateName = input.question("Please enter your name: ");
+ input.question("Please enter your name: ");
+  return candidateName;
 }
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   let candidateAnswer = input.question(question);
+  return candidateAnswer;
 }
 
 function gradeQuiz() {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-let correctAnswer = "Sally Ride";
+
 if (candidateAnswer = "Sally Ride") {
     console.log('correct, nice work!');
 } else {
