@@ -6,7 +6,7 @@ const input = require('readline-sync');
 let candidateName = "";
 // TODO 1.2a: Define question, correctAnswer, and candidateAnswer //
 let question = "Who was the first American woman in space? ";
-let correctAnswer = "Sally Ride";
+let correctAnswer = "Sally Ride"
 let candidateAnswer = "";
 
 
@@ -18,56 +18,79 @@ let questions = [
   "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ",
   "What is the minimum crew size for the ISS? "
 ];
-let correctAnswers = [
-  "Sally Ride",
-  "true",
-  "40",
-  "Trajectory",
+let correctAnswers =[
+  "Sally Ride", 
+  "true", 
+  "40", 
+  "Trajectory", 
   "3"
-];
-let candidateAnswers = "";
+]; 
+let candidateAnswers = [];
 
-
+// prompt candidate for their name
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
-  let readlineSync = require('readline-sync');
-  let name1 = readlineSync.question("Please enter your name: ");
-  return "Hello ," + name1 + "!";
+  candidateName = input.question("Please enter you name-- ");
+  return candidateName;
 }
-function askQuestion(){
+
+function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-    for (i = 0; i < questions.length; i++) {
-      let readlineSync = require('readline-sync');
-      readlineSync.question(questions[i]);
-     } 
+  for (let i = 0; i < questions.length; i++) {
+    candidateAnswers.push(input.question(questions[i]));
+  }
+  return candidateAnswers;
 }
 
-function gradeQuiz() {
+function gradeQuiz(candidateAnswers) {
+  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly //
+  let numCorrect = 0;
+  
+  for (let i = 0; i < candidateAnswers.length; i++){
+    if (correctAnswers[i].toLowerCase() == candidateAnswers[i].toLowerCase()){
 
-  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-
-if (candidateAnswers === correctAnswers[0],[1],[2],[3],[4]) {
-    console.log(`--${correctAnswers[0]} Correct, nice work!\n--${correctAnswers[1]} Correct, nice work!\n--${correctAnswers[2]} Correct, nice work!\n--${correctAnswers[3]} Correct, nice work!\n--${correctAnswers[4]} Correct, nice work!`);
-} else {
-  console.log("Incorrect Answer!");
+      numCorrect++;
+    } else {
+      console.log(`question ${i+1} Incorrect. Correct answer--${candidateAnswers[i]}`)
+      //console.log(candidateAnswers[i] === correctAnswers[i]`\n${candidateAnswers[0]}--Correct!\nIncorrect!--${candidateAnswers[0]}\n${candidateAnswers[1]}--Correct!\nIncorrect!--${candidateAnswers[1]}\n${candidateAnswers[2]}--Correct!\nIncorrect!--${candidateAnswers[2]}\n${candidateAnswers[3]}--Correct!\nIncorrect!--${candidateAnswers[3]}\n${candidateAnswers[4]}--Correct!\nIncorrect!--${candidateAnswers[4]}`);
+    }
+  }
+  return test(numCorrect);
 }
-
-
-
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
-
+function test(numCorrect) {
+  
+  let grade;  //TODO 3.2 use this variable to calculate the candidates score
+   grade = ((numCorrect) / (questions.length)) *100;
+  console.log("=====================");
+  console.log(`Candidate Name-- ${candidateName}`);
+  console.log("=====================");
+  for (let i = 0; i < questions.length; i++) {
+    console.log(questions[i]);
+    console.log("---------------------");
+    console.log(`Your answer-- ${candidateAnswers[i]}`);
+    console.log("---------------------");
+    console.log(`Correct answer-- ${correctAnswers[i]}`);
+    console.log("=====================");
+  }
+  console.log(`Candidate's score-- ${grade}%\n(${numCorrect} of ${questions.length} Number of questions answered correctly.)`);
+  if (grade < 80) {
+    console.log("Failed!");
+    console.log("=====================");
+  } else {
+    console.log("Passed!");
+    console.log("=====================");
+  }
   return grade;
 }
-
+console.log("=====================");
 function runProgram() {
-  
+  askForName();
   // TODO 1.1c: Greet candidate using their name //
-console.log(`${askForName()}`);
-askQuestion();
-  gradeQuiz(this.candidateAnswers);
-}
+  console.log(`Hello, ${candidateName}!`);
+  askQuestion();
+  gradeQuiz(this.candidateAnswers); 
 
+}
 // ----------- Don't write any code or change any code below this line ---------- //
 module.exports = {
   candidateName: candidateName,
