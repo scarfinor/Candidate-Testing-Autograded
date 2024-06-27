@@ -34,20 +34,24 @@ function askForName() {
   let name1 = readlineSync.question("Please enter your name: ");
   return "Hello ," + name1 + "!";
 }
-function askQuestion() {
+function askQuestion(){
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-  
+    for (i = 0; i < questions.length; i++) {
+      let readlineSync = require('readline-sync');
+      readlineSync.question(questions[i]);
+     } 
 }
 
 function gradeQuiz() {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
 
-if (candidateAnswer = "Sally Ride") {
-    console.log('correct, nice work!');
+if (candidateAnswers === correctAnswers[0],[1],[2],[3],[4]) {
+    console.log(`--${correctAnswers[0]} Correct, nice work!\n--${correctAnswers[1]} Correct, nice work!\n--${correctAnswers[2]} Correct, nice work!\n--${correctAnswers[3]} Correct, nice work!\n--${correctAnswers[4]} Correct, nice work!`);
 } else {
-      console.log('incorrect');
+  console.log("Incorrect Answer!");
 }
+
 
 
   let grade;  //TODO 3.2 use this variable to calculate the candidates score.
@@ -60,7 +64,7 @@ function runProgram() {
   
   // TODO 1.1c: Greet candidate using their name //
 console.log(`${askForName()}`);
-  askQuestion();
+askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
 
